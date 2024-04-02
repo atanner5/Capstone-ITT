@@ -27,13 +27,11 @@ DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `task` varchar(255) NOT NULL DEFAULT '',
+  `completeBy` date DEFAULT NULL,
+  `completed` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
-LOCK TABLES `tasks` WRITE;
-INSERT INTO `tasks` VALUES (1,'Homework'),(2,'Walk Dog'),(3,'Wash Dishes'),(4,'Take out trash'),(5,'Buy milk');
-UNLOCK TABLES;
 
 --
 -- Dumping data for table `tasks`
@@ -41,6 +39,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` VALUES (1,'Homework',NULL,0),(2,'Walk Dog',NULL,0),(3,'Wash Dishes',NULL,0),(4,'Take out trash',NULL,0),(5,'Buy milk',NULL,0);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-01 10:57:50
+-- Dump completed on 2024-04-02 10:20:46
