@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task King</title>
+
+  <link rel="stylesheet" href="">
+</head>
+<body>
+
+  <div class="wrapper">
+    
+  <?php
+
+  require 'sanitize.php';  // require (include) the sanitize.php file here
+
+  // Allow user to add more task
+  $addNewTaskCL = sanitizeString(INPUT_GET, "clicked");
+
+  // Check to see if the user clicked the Add a new book title link
+  if ($addNewTaskCL == 1) {
+
+    // Display the add new book form
+    ?> 
+    <form action="" method="post">
+      <label for="taskName" id="taskName">Task Name:</label><br>
+      <textarea name="newTaskName" id="newTaskName" cols="60" rows="20">Task Name</textarea>
+      <br><br>
+
+      <label for="CompleteBy" id="CompleteBy">Complete By:</label><br>
+      <input type="text" name="date" id="date">
+      <br><br>
+
+        <?php
+        $closeSelect = true;
+
+        $tasks = Query($pdo, 'SELECT * FROM tasks ORDER BY id', 'Error fetching task lists');
+
+        while ($row = $tasks->fetch()) {
+          ?> 
+          <option value="<?= $row['id'] ?>"><?= $row['tasks'] ?></option><?php
+
+        }
+
+        ?> 
+
+      </select>
+      <br><br>
+
+      <input type="submit" name="addTasks" value="Add Tasks">
+    </form>
+
+    <?php
+
+  }   
+
+  echo "\t<h2 id=\"topHeading\">The Book Review</h2>\n";
+
+
+  // Check if user submitted the Add a new book form, and if so,
+  // validate their entered data.
+  $newTask = sanitizeString(INPUT_POST, 'newTask');
+  $newTaskSubmit = sanitizeString(INPUT_POST, 'addTasks');
+
+
+
+    $numTasks = Query($pdo, $query, $errorMsg)->fetchColumn();
+    echo "\t<h3 style=\"color: #fff;\">New book title $newTasks added</h3>\n";
+    ?> 
+
+    
+    <br><br><?php
+    $thisPage = sanitizeString(INPUT_SERVER, "PHP_SELF");
+    //echo $thisPage;
+    ?> 
+
+    <a href="<?php echo "$thisPage?clicked=1" ?>">Add new tasks</a>
+
+  </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/slidePanes.js"></script>
+  
+</body>
+</html>
