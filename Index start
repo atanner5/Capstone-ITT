@@ -13,19 +13,17 @@
     
   <?php
 
-  require 'sanitize.php';  // require (include) the sanitize.php file here
+  require 'sanitize.php';  
 
   // Allow user to add more task
-  $addNewTaskCL = sanitizeString(INPUT_GET, "clicked");
+  $addNewTaskCL = sanitize(INPUT_GET, "clicked");
 
-  // Check to see if the user clicked the Add a new book title link
   if ($addNewTaskCL == 1) {
 
-    // Display the add new book form
     ?> 
     <form action="" method="post">
       <label for="taskName" id="taskName">Task Name:</label><br>
-      <textarea name="newTaskName" id="newTaskName" cols="60" rows="20">Task Name</textarea>
+      <textarea name="newTaskName" id="newTaskName" cols="60" rows="1">Task Name</textarea>
       <br><br>
 
       <label for="CompleteBy" id="CompleteBy">Complete By:</label><br>
@@ -55,23 +53,13 @@
 
   }   
 
-  echo "\t<h2 id=\"topHeading\">The Book Review</h2>\n";
-
-
-  // Check if user submitted the Add a new book form, and if so,
-  // validate their entered data.
-  $newTask = sanitizeString(INPUT_POST, 'newTask');
-  $newTaskSubmit = sanitizeString(INPUT_POST, 'addTasks');
-
-
-
-    $numTasks = Query($pdo, $query, $errorMsg)->fetchColumn();
-    echo "\t<h3 style=\"color: #fff;\">New book title $newTasks added</h3>\n";
+  $newTask = sanitize(INPUT_POST, 'newTask');
+  $newTaskSubmit = sanitize(INPUT_POST, 'addTasks');
     ?> 
 
     
     <br><br><?php
-    $thisPage = sanitizeString(INPUT_SERVER, "PHP_SELF");
+    $thisPage = sanitize(INPUT_SERVER, "PHP_SELF");
     //echo $thisPage;
     ?> 
 
